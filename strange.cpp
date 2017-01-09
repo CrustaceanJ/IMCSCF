@@ -45,16 +45,16 @@ int main()
     {
       letters[i].resize(26);
     }
-	  while(z!=s.length())
+    while(z!=s.length())
     {
-    	ch = s[z];
+      ch = s[z];
       if(x=='0')
       {
         x=ch;
       }
       if(x!=ch)
       {
-    	  a[(int)x-(int)'a']=max(a[(int)x-(int)'a'], szx);
+    	a[(int)x-(int)'a']=max(a[(int)x-(int)'a'], szx);
         v.push_back(make_pair(x, szx));
         x = ch;
         szx=0;
@@ -62,7 +62,7 @@ int main()
       szx++;
       if(z==s.length()-1)
     	{
-      		a[(int)ch-(int)'a']=max(a[(int)ch-(int)'a'], szx);
+          a[(int)ch-(int)'a']=max(a[(int)ch-(int)'a'], szx);
           v.push_back(make_pair(ch, szx));
     	}
   	  z++;
@@ -76,7 +76,7 @@ int main()
     {
       letters[(int)v[i-1].first-(int)'a'][(int)v[i].first-(int)'a'].push_back(make_pair(v[i-1].second, v[i].second));
     }
-	  v.clear();
+    v.clear();
     for(int i = 0; i<26;++i)
     {
       for(int j = 0; j<26; ++j)
@@ -93,9 +93,9 @@ int main()
         addToAns(letters[i][j]);
       }
     }
-  	for(int i = 0; i < 26; ++i)
-  	{
-  		ans+=a[i];
-  	}
-  	cout<<ans<<endl;
+    for(int i = 0; i < 26; ++i)
+    {
+      ans+=a[i];
+    }
+    cout<<ans<<endl;
 }
