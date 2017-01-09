@@ -1,3 +1,4 @@
+//https://imcs.dvfu.ru/cats/static/problem_text-cpid-1119885.html
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
