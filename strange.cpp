@@ -38,7 +38,7 @@ int main()
 {
     freopen("strange.in", "r", stdin);
     freopen("strange.out","w",stdout);
-	  getline(cin, s);
+    getline(cin, s);
     vector< pair<char, ll> > v;
     vector< vector < vector< pair<ll, ll> > > > letters(26);
     for(int i = 0; i<26; ++i)
