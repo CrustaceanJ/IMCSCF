@@ -13,25 +13,45 @@
 
 using namespace std;
 typedef long long ll;
-string s, st;
-vector<ll> prefixFun(string s){
-	ll sz = s.size();
-	vector<ll> p(sz);
-	p[0] = 0;
-	ll q = 0;
-	for (ll t = 1; t < sz; ++t){
-		while (q>0 && p[q] == p[t]) q = p[q];
-		if (p[q] == p[t]) q++;
-		p[t] = q;
-	}
-	return p;
-}
+ll n;
+struct p{
+	int x;
+	int y;
+};
+vector<p> vP;
+vector<vector<double>> d, L;
 int main(){
 	freopen("input.txt", "r", stdin);
 	freopen("output.txt", "w", stdout);
-	getline(cin, s);
-	getline(cin, st);
+	cin >> n;
+	for (int i = 0; i < n; ++i){
+		p pt;
+		cin >> pt.x >> pt.y;
+		vP.push_back(pt);
+	}
+	d.resize(n);
+	L.resize(n);
+	for (int i = 0; i < n; ++i){
+		d[i].resize(n);
+		L[i].resize(n, 1e6);
+	}
+	for (int i = 0; i < n; ++i){
+		for (int j = 0; j < n; ++j){
+			if ((i + 1) % n == j % n || (i - 1) % n == j % n) d[i][j] = 1e6; else
+				d[i][j] = sqrt((vP[i].x - vP[j].x)*(vP[i].x - vP[j].x)*1.0 + (vP[i].y - vP[j].y)*(vP[i].y - vP[j].y)*1.0);
+		}
+	}
 	
-	cout << -1 << endl;
+	for (int i = 0; i < n-2; ++i){
+		L[i][(i + 2)] = 0;
+	}
+	for (int i = 0; i < n; ++i){
+		for (int j = i + 3; j < n; ++j){
+			for (int k = i + 1; k < j; ++k){
+				L[i][j] = min(L[i][j], L[i][k] + L[k][j] + d[i][k] + d[k][j]);
+			}
+		}
+	}
+	cout << L[0][n - 1] << endl;
 	return 0;
 }
